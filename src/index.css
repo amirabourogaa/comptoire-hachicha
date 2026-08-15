@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================
+   TYPOGRAPHIES MODERNES
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600&family=Roboto:wght@300;400;500&display=swap');
+
+@layer base {
+  :root {
+    /* 🎨 Couleurs principales */
+    --primary: #F2800A;
+    --dark: #2D2F33;
+    --gray: #B0AFAD;
+    --light: #F5EBDD;
+
+    /* 🎯 UI tokens */
+    --background: #ffffff;
+    --foreground: #2D2F33;
+
+    --card: #ffffff;
+    --border: #e5e5e5;
+
+    --button-hover: #d96f05;
+  }
+
+  body {
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    @apply antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', 'Poppins', sans-serif;
+    @apply font-semibold tracking-tight;
+  }
+}
+
+/* =========================
+   HEADER (noir)
+========================= */
+@layer components {
+  .header {
+    background: var(--dark);
+    @apply flex items-center justify-between px-8 py-4;
+  }
+
+  .nav-link {
+    @apply text-white/80 uppercase text-sm font-medium tracking-wide transition;
+  }
+
+  .nav-link:hover {
+    color: var(--primary);
+  }
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+  .hero {
+    @apply relative flex items-center justify-center text-center;
+    min-height: 80vh;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-overlay {
+    @apply absolute inset-0;
+    background: rgba(0,0,0,0.5);
+  }
+
+  .hero-content {
+    @apply relative z-10 text-white;
+  }
+
+/* =========================
+   BUTTON ORANGE
+========================= */
+  .btn-primary {
+    background: var(--primary);
+    @apply px-6 py-3 rounded-md font-semibold text-white transition;
+  }
+
+  .btn-primary:hover {
+    background: var(--button-hover);
+    transform: translateY(-2px);
+  }
+
+/* =========================
+   PRODUITS (cards)
+========================= */
+  .product-card {
+    @apply bg-white rounded-xl overflow-hidden border transition;
+    border-color: var(--border);
+  }
+
+  .product-card:hover {
+    @apply shadow-lg;
+    transform: translateY(-5px);
+  }
+
+  .product-image {
+    @apply w-full h-48 object-cover;
+  }
+
+  .product-content {
+    @apply p-4;
+  }
+
+/* =========================
+   SERVICES SECTION
+========================= */
+  .service-card {
+    @apply p-6 bg-white border rounded-xl text-center transition;
+  }
+
+  .service-card:hover {
+    border-color: var(--primary);
+    @apply shadow-md;
+  }
+
+/* =========================
+   FOOTER
+========================= */
+  .footer {
+    background: var(--dark);
+    color: white;
+    @apply px-8 py-10;
+  }
+
+  .footer a {
+    @apply text-white/70;
+  }
+
+  .footer a:hover {
+    color: var(--primary);
+  }
+
+/* =========================
+   UTILITIES
+========================= */
+@layer utilities {
+  .text-primary {
+    color: var(--primary);
+  }
+
+  .bg-primary {
+    background: var(--primary);
+  }
+
+  .bg-dark {
+    background: var(--dark);
+  }
+}

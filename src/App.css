@@ -1,0 +1,530 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import des typographies demandées */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Variables CSS demandées */
+    --primary: #F2800A;
+    --dark: #2D2F33;
+    --gray: #B0AFAD;
+    --light: #F5EBDD;
+    
+    /* Variables système */
+    --background: 40 38% 93%;
+    --foreground: 30 22% 29%;
+    --card: 38 35% 92%;
+    --card-foreground: 30 22% 29%;
+    --popover: 40 38% 95%;
+    --popover-foreground: 30 22% 29%;
+    --primary-foreground: 40 38% 95%;
+    --secondary: 38 35% 80%;
+    --secondary-foreground: 30 22% 29%;
+    --muted: 36 26% 78%;
+    --muted-foreground: 30 15% 45%;
+    --accent: 43 74% 49%;
+    --accent-foreground: 30 22% 15%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 36 26% 82%;
+    --input: 36 26% 85%;
+    --ring: 43 74% 49%;
+    
+    /* Typographies demandées */
+    --font-heading: 'Montserrat', 'Poppins', system-ui, sans-serif;
+    --font-body: 'Roboto', 'Open Sans', system-ui, sans-serif;
+    
+    /* Variables additionnelles pour la structure UX */
+    --navbar-bg: #2D2F33;
+    --navbar-text: #F5EBDD;
+    --button-color: #F2800A;
+    --button-hover: #E06E00;
+    --footer-bg: #2D2F33;
+    --footer-text: #F5EBDD;
+    
+    /* Ombres */
+    --shadow-soft: 0 4px 20px -4px rgba(0, 0, 0, 0.12);
+    --shadow-elevated: 0 20px 40px -15px rgba(0, 0, 0, 0.18);
+    --shadow-glow: 0 0 40px -10px rgba(242, 128, 10, 0.35);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+  }
+  
+  /* Application des typographies pour les titres */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  
+  h1 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+  
+  h2 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Style pour le corps de texte */
+  p, span, li, a:not(.nav-link), .text-body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--light);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--gray);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+}
+
+@layer components {
+  /* ===== HEADER (Noir avec logo et navigation) ===== */
+  .header {
+    @apply fixed top-0 left-0 w-full z-50;
+    background-color: var(--navbar-bg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .header-container {
+    @apply container mx-auto px-4 md:px-6 py-4 flex items-center justify-between;
+  }
+  
+  .logo {
+    @apply text-2xl font-bold tracking-tight;
+    font-family: var(--font-heading);
+    color: var(--navbar-text);
+  }
+  
+  .logo span {
+    color: var(--primary);
+  }
+  
+  .nav-menu {
+    @apply hidden md:flex items-center gap-8;
+  }
+  
+  .nav-link {
+    @apply text-sm font-medium tracking-wide transition-all duration-300 relative;
+    color: var(--navbar-text);
+    font-family: var(--font-body);
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  .nav-link:hover {
+    color: var(--primary);
+  }
+  
+  .mobile-menu-btn {
+    @apply md:hidden text-white text-2xl;
+  }
+  
+  /* ===== HERO SECTION (Image chantier + bouton orange) ===== */
+  .hero {
+    @apply relative min-h-screen flex items-center justify-center overflow-hidden;
+    background-image: url('https://via.placeholder.com/1920x1080'); /* Remplacer par image chantier */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
+  }
+  
+  .hero-content {
+    @apply relative z-10 text-center px-4 max-w-4xl mx-auto;
+  }
+  
+  .hero-title {
+    @apply text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6;
+    font-family: var(--font-heading);
+    color: white;
+  }
+  
+  .hero-subtitle {
+    @apply text-lg md:text-xl lg:text-2xl mb-8;
+    font-family: var(--font-body);
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Bouton orange */
+  .btn-primary {
+    @apply inline-block px-8 py-4 text-base font-semibold uppercase tracking-wide transition-all duration-300 rounded-lg;
+    background-color: var(--button-color);
+    color: white;
+    font-family: var(--font-body);
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(242, 128, 10, 0.4);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  
+  /* ===== SECTION PRODUITS (Cartes avec photos catalogue) ===== */
+  .products-section {
+    @apply py-20 px-4;
+    background-color: var(--light);
+  }
+  
+  .section-container {
+    @apply container mx-auto;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12;
+    font-family: var(--font-heading);
+    color: var(--dark);
+  }
+  
+  .section-title span {
+    color: var(--primary);
+  }
+  
+  .products-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+  
+  .product-card {
+    @apply bg-white rounded-xl overflow-hidden transition-all duration-300;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+  }
+  
+  .product-image-wrapper {
+    @apply relative overflow-hidden h-64 bg-gray-100;
+  }
+  
+  .product-image {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+  
+  .product-card:hover .product-image {
+    transform: scale(1.05);
+  }
+  
+  .product-badge {
+    @apply absolute top-3 right-3 px-3 py-1 text-xs font-semibold rounded-full;
+    background-color: var(--primary);
+    color: white;
+    font-family: var(--font-body);
+  }
+  
+  .product-content {
+    @apply p-5;
+  }
+  
+  .product-title {
+    @apply text-lg font-semibold mb-2;
+    font-family: var(--font-heading);
+    color: var(--dark);
+  }
+  
+  .product-description {
+    @apply text-sm mb-3;
+    font-family: var(--font-body);
+    color: var(--gray);
+  }
+  
+  .product-price {
+    @apply text-xl font-bold;
+    color: var(--primary);
+    font-family: var(--font-heading);
+  }
+  
+  .product-price small {
+    @apply text-xs font-normal;
+    color: var(--gray);
+  }
+  
+  /* ===== SECTION SERVICES (Vente / Location) ===== */
+  .services-section {
+    @apply py-20 px-4;
+    background-color: white;
+  }
+  
+  .services-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto;
+  }
+  
+  .service-card {
+    @apply p-8 rounded-xl text-center transition-all duration-300;
+    background-color: var(--light);
+    border: 1px solid rgba(176, 175, 173, 0.2);
+  }
+  
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--primary);
+  }
+  
+  .service-icon {
+    @apply w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center;
+    background-color: rgba(242, 128, 10, 0.1);
+  }
+  
+  .service-icon i {
+    @apply text-3xl;
+    color: var(--primary);
+  }
+  
+  .service-title {
+    @apply text-2xl font-bold mb-4;
+    font-family: var(--font-heading);
+    color: var(--dark);
+  }
+  
+  .service-description {
+    @apply mb-6;
+    font-family: var(--font-body);
+    color: var(--gray);
+  }
+  
+  .service-features {
+    @apply text-left space-y-2 mb-6;
+  }
+  
+  .service-features li {
+    @apply flex items-center gap-2 text-sm;
+    font-family: var(--font-body);
+    color: var(--dark);
+  }
+  
+  .service-features li::before {
+    content: '✓';
+    color: var(--primary);
+    font-weight: bold;
+  }
+  
+  .btn-secondary {
+    @apply inline-block px-6 py-3 text-sm font-semibold uppercase tracking-wide transition-all duration-300 rounded-lg;
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    font-family: var(--font-body);
+    cursor: pointer;
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  /* ===== FOOTER (Sombre avec coordonnées et contact) ===== */
+  .footer {
+    @apply py-12 px-4;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+  }
+  
+  .footer-container {
+    @apply container mx-auto;
+  }
+  
+  .footer-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8;
+  }
+  
+  .footer-section h3 {
+    @apply text-lg font-semibold mb-4;
+    font-family: var(--font-heading);
+    color: white;
+  }
+  
+  .footer-section p {
+    @apply text-sm mb-2;
+    font-family: var(--font-body);
+    color: rgba(245, 235, 221, 0.8);
+  }
+  
+  .footer-section ul {
+    @apply space-y-2;
+  }
+  
+  .footer-section ul li {
+    @apply text-sm;
+    font-family: var(--font-body);
+    color: rgba(245, 235, 221, 0.8);
+  }
+  
+  .footer-section ul li a {
+    @apply transition-colors duration-300;
+  }
+  
+  .footer-section ul li a:hover {
+    color: var(--primary);
+  }
+  
+  .contact-info li {
+    @apply flex items-center gap-2;
+  }
+  
+  .contact-info li i {
+    @apply w-5;
+    color: var(--primary);
+  }
+  
+  .social-links {
+    @apply flex gap-4 mt-4;
+  }
+  
+  .social-links a {
+    @apply w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  
+  .social-links a:hover {
+    background-color: var(--primary);
+    transform: translateY(-2px);
+  }
+  
+  .footer-bottom {
+    @apply text-center pt-8 mt-8;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer-bottom p {
+    @apply text-xs;
+    font-family: var(--font-body);
+    color: rgba(245, 235, 221, 0.6);
+  }
+  
+  /* ===== COMPOSANTS UTILITAIRES ===== */
+  .container-custom {
+    @apply container mx-auto px-4 md:px-6;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, var(--primary), var(--button-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 0.6s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+  
+  .font-body {
+    font-family: var(--font-body);
+  }
+  
+  .text-primary-custom {
+    color: var(--primary);
+  }
+  
+  .bg-primary-custom {
+    background-color: var(--primary);
+  }
+  
+  .bg-dark-custom {
+    background-color: var(--dark);
+  }
+  
+  .text-dark-custom {
+    color: var(--dark);
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+}
