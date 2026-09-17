@@ -32,8 +32,3 @@ Avant de commencer, assurez-vous d'avoir installé :
 
 - Node.js
 - npm
-
-### Cloner le projet
-
-```bash
-git clone <YOUR_GIT_URL>
