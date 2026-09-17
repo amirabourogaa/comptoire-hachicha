@@ -1,14 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Product, CURRENCY } from '@/types';
 import { motion } from 'framer-motion';
-import { Eye, Zap, Store, CheckCircle, Heart, ShoppingBag, Star, Package, Download } from 'lucide-react';
+import { Eye, Zap, Store, CheckCircle, Heart, ShoppingBag, Star, Package, FileText } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { VendorInfoDialog } from './VendorInfoDialog';
 import { useCart } from '@/contexts/CartContext';
-
-// Le PDF doit être placé dans /public/Catalogue.pdf
-const cataloguePDF = '/Catalogue.pdf';
 
 interface ProductCardProps {
   product: Product;
@@ -50,15 +47,12 @@ export function ProductCard({ product }: ProductCardProps) {
     '';
   const description = getPlainText(rawDescription);
 
-  const handleDownloadCatalog = (e: React.MouseEvent) => {
+  const handleDownloadSpecs = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    const link = document.createElement('a');
-    link.href = cataloguePDF;
-    link.download = 'Catalogue.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    if (product.specs_pdf_url) {
+      window.open(product.specs_pdf_url, '_blank', 'noopener,noreferrer');
+    }
   };
 
   const handleVendorClick = (e: React.MouseEvent) => {
@@ -197,7 +191,7 @@ export function ProductCard({ product }: ProductCardProps) {
                   className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition"
                 >
                   {product.vendor.logo_url ? (
-                    <img src={product.vendor.logo_url} alt={product.vendor.name} className="w-4 h-4 rounded-full object-cover" />
+                    <img src={product.vendor.logo_url} alt={product.vendor.name} className="w-4 h-4 rounded-full object-cover" loading="lazy" decoding="async" />
                   ) : (
                     <Store className="w-3.5 h-3.5" />
                   )}
@@ -268,15 +262,17 @@ export function ProductCard({ product }: ProductCardProps) {
               </div>
             )}
 
-            {/* Catalogue PDF */}
-            <button
-              type="button"
-              onClick={handleDownloadCatalog}
-              className="w-full flex items-center justify-center gap-1.5 text-xs text-primary hover:underline py-1"
-            >
-              <Download className="w-3.5 h-3.5" />
-              Télécharger le catalogue
-            </button>
+            {/* Fiche technique PDF du produit */}
+            {product.specs_pdf_url && (
+              <button
+                type="button"
+                onClick={handleDownloadSpecs}
+                className="w-full flex items-center justify-center gap-1.5 text-xs text-primary hover:underline py-2"
+              >
+                <FileText className="w-4 h-4" aria-hidden="true" />
+                Télécharger la fiche technique
+              </button>
+            )}
 
             {/* Stock */}
             {stock !== undefined && stock <= 5 && stock > 0 && (

@@ -77,6 +77,7 @@ export function Hero() {
                 className="w-full h-full object-cover object-center"
                 loading="eager"
                 fetchPriority="high"
+                decoding="async"
               />
             </motion.div>
           )

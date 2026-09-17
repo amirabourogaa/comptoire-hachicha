@@ -71,7 +71,8 @@ export function ProductImageGallery({
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               className="w-full h-full object-contain p-4"
-              loading="lazy"
+              loading="eager"
+              decoding="async"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-muted-foreground">
@@ -168,6 +169,7 @@ export function ProductImageGallery({
                 alt={`${productTitle} thumbnail ${index + 1}`}
                 className="w-full h-full object-contain p-1"
                 loading="lazy"
+                decoding="async"
               />
             </button>
           ))}

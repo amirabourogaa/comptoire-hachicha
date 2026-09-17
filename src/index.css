@@ -1,11 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* =========================
    TYPOGRAPHIES MODERNES
 ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600&family=Roboto:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {
@@ -30,11 +30,31 @@
     background: var(--background);
     color: var(--foreground);
     @apply antialiased;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-width: 0;
+    width: 100%;
+  }
+
+  img, video, iframe {
+    max-width: 100%;
+  }
+
+  button, input, select, textarea {
+    max-width: 100%;
   }
 
   h1, h2, h3, h4, h5 {
     font-family: 'Montserrat', 'Poppins', sans-serif;
     @apply font-semibold tracking-tight;
+  }
+
+  @media (max-width: 640px) {
+    h1 { @apply text-2xl; }
+    h2 { @apply text-xl; }
+    h3 { @apply text-lg; }
   }
 }
 
@@ -136,6 +156,59 @@
 
   .footer a:hover {
     color: var(--primary);
+  }
+
+  .page-shell {
+    width: 100%;
+    min-width: 0;
+    overflow-x: clip;
+  }
+
+  .content-width {
+    width: min(100%, 1280px);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, 2rem);
+  }
+
+  .responsive-table {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .responsive-table > table {
+    min-width: 42rem;
+  }
+
+  @media (max-width: 640px) {
+    [class*="grid-cols-2"],
+    [class*="grid-cols-3"],
+    [class*="grid-cols-4"],
+    [class*="grid-cols-5"],
+    [class*="grid-cols-6"] {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    table {
+      display: block;
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .container-custom,
+    .section-container,
+    .footer-container {
+      padding-inline: 1rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      max-width: 100%;
+      white-space: normal;
+      text-align: center;
+    }
   }
 
 /* =========================

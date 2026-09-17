@@ -7,7 +7,7 @@ import {
   Eye, Sparkles, Star, Package, Gift, Award, BadgeCheck, Zap,
   Clock, Info, Ruler, Droplet, Leaf, Recycle, Factory, ThumbsUp,
   Home, ChevronRight as ChevronRightIcon, Tag, TrendingUp, AlertCircle,
-  Calendar, Users, ThumbsUp as ThumbsUpIcon, Award as AwardIcon
+  Calendar, Users, ThumbsUp as ThumbsUpIcon, Award as AwardIcon, FileText
 } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { useProduct, useProducts } from '@/hooks/useProducts';
@@ -434,7 +434,7 @@ const ProductPage = () => {
                 <div className="relative bg-gradient-to-r from-card via-card to-card/50 backdrop-blur-sm p-4 rounded-xl border border-border/50 hover:border-primary/20 transition-all group">
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   
-                  <div className="flex items-center justify-between relative z-10">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 relative z-10">
                     <div className="flex items-center gap-4">
                       <div className="relative">
                         {product.vendor.logo_url ? (
@@ -554,7 +554,7 @@ const ProductPage = () => {
                 transition={{ delay: 0.7 }}
                 className="mb-6"
               >
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <span className="text-sm font-medium tracking-wide flex items-center gap-2">
                     <Droplet size={16} className="text-primary" />
                     Couleur
@@ -603,7 +603,7 @@ const ProductPage = () => {
                 transition={{ delay: 0.8 }}
                 className="mb-6"
               >
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <span className="text-sm font-medium tracking-wide flex items-center gap-2">
                     <Ruler size={16} className="text-primary" />
                     Taille
@@ -645,7 +645,7 @@ const ProductPage = () => {
                 transition={{ delay: 0.85 }}
                 className="mb-6"
               >
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <span className="text-sm font-medium tracking-wide flex items-center gap-2">
                     <Gift size={16} className="text-primary" />
                     {attr.name}
@@ -870,10 +870,10 @@ const ProductPage = () => {
                       className="group inline-flex items-center gap-3 px-6 py-4 bg-primary/10 hover:bg-primary/20 text-primary rounded-xl transition-all border border-primary/20"
                     >
                       <div className="p-2 bg-primary/20 rounded-lg group-hover:scale-110 transition-transform">
-                        <Package size={20} />
+                        <FileText size={20} aria-hidden="true" />
                       </div>
                       <div>
-                        <span className="font-medium">📄 Fiche technique (PDF)</span>
+                        <span className="font-medium">Télécharger la fiche technique (PDF)</span>
                         <p className="text-xs text-muted-foreground">Téléchargez les spécifications détaillées</p>
                       </div>
                     </a>

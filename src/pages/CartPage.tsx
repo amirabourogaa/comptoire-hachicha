@@ -199,7 +199,7 @@ const CartPage = () => {
                           <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-500 z-10" />
                           {mainImage ? (
                             <>
-                              <img src={mainImage} alt={item.product.title} className="w-full h-full object-cover transition-all duration-700 group-hover/image:scale-110" />
+                              <img src={mainImage} alt={item.product.title} loading="lazy" decoding="async" className="w-full h-full object-cover transition-all duration-700 group-hover/image:scale-110" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
                             </>
                           ) : (
