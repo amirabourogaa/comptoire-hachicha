@@ -62,14 +62,14 @@ export function FeaturesSection() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="container relative mx-auto px-4">
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-16"
         >
           <motion.div 
             initial={{ scale: 0, opacity: 0 }}
@@ -85,10 +85,10 @@ export function FeaturesSection() {
             <span className="h-px w-12 bg-gradient-to-l from-transparent to-primary/60" />
           </motion.div>
           
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium mb-5 text-foreground">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium mb-4 md:mb-5 text-foreground">
             Pourquoi Nous <span className="gradient-text-gold">Choisir</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-lg mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-lg mx-auto leading-relaxed">
             Des avantages exclusifs pour une expérience d'achat exceptionnelle
           </p>
         </motion.div>
@@ -99,7 +99,7 @@ export function FeaturesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+          className="mx-auto grid w-full max-w-7xl grid-cols-1 items-stretch gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-7"
         >
           {features.map((feature, index) => {
             const IconComponent = iconMap[feature.icon] || Star;
@@ -110,7 +110,7 @@ export function FeaturesSection() {
                 variants={itemVariants}
                 className="group"
               >
-                <div className="relative h-full p-8 lg:p-10 bg-card/80 backdrop-blur-sm rounded-3xl border border-border/50 transition-all duration-500 hover:border-primary/40 hover:shadow-elevated overflow-hidden">
+                <div className="relative flex h-full min-h-[260px] flex-col overflow-hidden rounded-3xl border border-border/50 bg-card/80 p-6 backdrop-blur-sm transition-all duration-500 hover:border-primary/40 hover:shadow-elevated sm:p-8 lg:min-h-[300px] lg:p-8">
                   {/* Hover gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
@@ -120,8 +120,8 @@ export function FeaturesSection() {
                   </span>
                   
                   {/* Icon */}
-                  <div className="relative mb-8">
-                    <div className="relative w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3">
+                  <div className="relative mb-6 shrink-0 sm:mb-7">
+                    <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3 sm:h-16 sm:w-16">
                       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary to-primary/80 shadow-lg group-hover:shadow-gold transition-shadow duration-500" />
                       <IconComponent className="relative w-7 h-7 text-primary-foreground" strokeWidth={1.5} />
                     </div>
@@ -131,11 +131,11 @@ export function FeaturesSection() {
                   
                   {/* Content */}
                   <div className="relative">
-                    <h3 className="font-serif text-xl lg:text-2xl font-medium mb-4 text-foreground group-hover:text-primary transition-colors duration-300">
+                    <h3 className="mb-3 min-h-[3.5rem] font-serif text-xl font-medium text-foreground transition-colors duration-300 group-hover:text-primary sm:text-2xl">
                       {feature.title}
                     </h3>
                     <div
-                      className="text-muted-foreground text-sm lg:text-base leading-relaxed prose prose-sm max-w-none [&_p]:my-0"
+                      className="text-sm leading-relaxed text-muted-foreground prose prose-sm max-w-none [&_p]:my-0 sm:text-base"
                       dangerouslySetInnerHTML={{ __html: sanitizeRichTextHtml(feature.description || '') }}
                     />
                   </div>

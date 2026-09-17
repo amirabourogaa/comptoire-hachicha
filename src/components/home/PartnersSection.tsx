@@ -24,9 +24,10 @@ function InfiniteMarquee({
     if (containerRef.current) {
       const firstSet = containerRef.current.querySelectorAll('[data-item]');
       if (firstSet.length > 0) {
+        const gap = parseFloat(getComputedStyle(containerRef.current).columnGap) || 0;
         const total = Array.from(firstSet)
           .slice(0, partners.length)
-          .reduce((acc, el) => acc + (el as HTMLElement).offsetWidth + 48, 0);
+          .reduce((acc, el) => acc + (el as HTMLElement).offsetWidth + gap, 0);
         setItemWidth(total);
       }
     }
@@ -54,7 +55,7 @@ function InfiniteMarquee({
       <motion.div
         ref={containerRef}
         style={{ x }}
-        className="flex items-center gap-12 w-max"
+        className="flex items-center gap-16 md:gap-24 w-max"
       >
         {items.map((partner, i) => (
           <a
@@ -71,12 +72,14 @@ function InfiniteMarquee({
             <img
               src={partner.logo_url}
               alt={partner.name}
-              className="relative h-8 md:h-10 w-auto object-contain
+              className="relative h-12 md:h-16 w-auto object-contain
                          opacity-70
                          group-hover:opacity-100
                          transition-all duration-500 ease-out
                          group-hover:scale-105"
               draggable={false}
+              loading="lazy"
+              decoding="async"
             />
           </a>
         ))}
@@ -89,11 +92,6 @@ export function PartnersSection() {
   const { data: partners, isLoading } = useActivePartners();
 
   if (isLoading || !partners || partners.length === 0) return null;
-
-  // Split into two rows for the layered marquee effect
-  const half = Math.ceil(partners.length / 2);
-  const row1 = partners.slice(0, half);
-  const row2 = partners.slice(half);
 
   return (
     <section className="relative overflow-hidden py-20 md:py-28">
@@ -134,28 +132,16 @@ export function PartnersSection() {
           </p>
         </motion.div>
 
-        {/* ── Row 1 — forward ── */}
+        {/* ── Single partner slider ── */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-8"
+          className="w-full"
         >
-          <InfiniteMarquee partners={row1.length > 0 ? row1 : partners} speed={32} />
+          <InfiniteMarquee partners={partners} speed={32} />
         </motion.div>
-
-        {/* ── Row 2 — reverse (only if we have enough partners) ── */}
-        {row2.length >= 2 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-          >
-            <InfiniteMarquee partners={row2} speed={28} reverse />
-          </motion.div>
-        )}
       </div>
     </section>
   );

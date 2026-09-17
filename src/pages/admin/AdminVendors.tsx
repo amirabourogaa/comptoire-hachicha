@@ -206,7 +206,7 @@ const AdminVendors = () => {
 
   return (
     <AdminLayout>
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-serif font-light">Vendeurs</h1>
           <p className="text-muted-foreground text-sm mt-1">Gérez vos vendeurs partenaires</p>

@@ -616,7 +616,9 @@ const CheckoutPage = () => {
                           <div className="w-16 h-16 rounded-lg overflow-hidden bg-gradient-to-br from-muted to-muted/50 flex-shrink-0">
                             {mainImage ? (
                               <img 
-                                src={mainImage} 
+                                src={mainImage}
+                                loading="lazy"
+                                decoding="async"
                                 alt={item.product.title} 
                                 className="w-full h-full object-cover"
                               />

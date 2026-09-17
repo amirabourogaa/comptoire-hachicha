@@ -221,7 +221,7 @@ const VendorShopPage = () => {
         </motion.div>
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap justify-between items-center gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap justify-between items-stretch sm:items-center gap-4 mb-6">
           <div className="flex items-center gap-4">
             <Button
               variant="outline"
@@ -252,7 +252,7 @@ const VendorShopPage = () => {
           </div>
           
           <Select value={sortBy} onValueChange={setSortBy}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px]">
               <SelectValue placeholder="Trier par" />
             </SelectTrigger>
             <SelectContent>

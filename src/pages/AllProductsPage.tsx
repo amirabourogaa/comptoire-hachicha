@@ -180,7 +180,7 @@ const AllProductsPage = () => {
         </motion.div>
 
         {/* Filter Controls */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="flex flex-wrap justify-between items-center gap-4 mb-6">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="flex flex-col sm:flex-row sm:flex-wrap justify-between items-stretch sm:items-center gap-4 mb-6">
           <div className="flex items-center gap-4">
             <button onClick={() => setShowFilters(!showFilters)} className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors">
               <SlidersHorizontal size={18} />
@@ -208,7 +208,7 @@ const AllProductsPage = () => {
               </button>
             </div>
             <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-full sm:w-[180px]">
                 <SelectValue placeholder="Trier par" />
               </SelectTrigger>
               <SelectContent>
