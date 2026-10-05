@@ -171,7 +171,7 @@ export function Footer() {
               {companyAddress && (
                 <li className="flex items-start gap-3 text-black/70">
                   <MapPin className="h-4 w-4 text-orange-400 flex-shrink-0 mt-0.5" />
-                  <span>{companyAddress}</span>
+                  <span dangerouslySetInnerHTML={{ __html: sanitizeRichTextHtml(companyAddress) }} />
                 </li>
               )}
             </ul>
