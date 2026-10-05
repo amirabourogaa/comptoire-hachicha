@@ -172,7 +172,7 @@ function MegaContactLinks({ links }: { links: { type: string; url: string }[] })
   const whatsappUrl = links.find(link => link.type === 'whatsapp')?.url || 'https://wa.me/21623623000';
 
   return (
-    <div className="hidden md:flex shrink-0 flex-col items-center justify-center gap-1 border-l border-navbar-text/15 pl-4 lg:pl-5">
+    <div className="hidden md:ml-auto md:flex shrink-0 items-center justify-end gap-4 border-l border-navbar-text/15 pl-4 lg:pl-5">
       <a
         href={whatsappUrl}
         target="_blank"
@@ -183,14 +183,12 @@ function MegaContactLinks({ links }: { links: { type: string; url: string }[] })
         <SocialIcon type="whatsapp" size={20} />
         <span className="text-navbar-text">+216 23 623 000</span>
       </a>
-      <div className="flex items-center gap-3">
-        <a href={facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-[#1877F2] hover:text-[#63a4ff] transition-colors">
-          <SocialIcon type="facebook" size={17} />
-        </a>
-        <a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-[#E4405F] hover:text-[#ff7890] transition-colors">
-          <SocialIcon type="instagram" size={17} />
-        </a>
-      </div>
+      <a href={facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-[#1877F2] hover:text-[#63a4ff] transition-colors">
+        <SocialIcon type="facebook" size={17} />
+      </a>
+      <a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-[#E4405F] hover:text-[#ff7890] transition-colors">
+        <SocialIcon type="instagram" size={17} />
+      </a>
     </div>
   );
 }

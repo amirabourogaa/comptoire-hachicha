@@ -270,7 +270,10 @@ export function useCreateCategory() {
       // ============================================================
       const { data, error } = await supabase
         .from('categories')
-        .insert(category)
+        .insert({
+          ...category,
+          show_in_navbar: category.parent_id ? false : true,
+        })
         .select()
         .single();
 

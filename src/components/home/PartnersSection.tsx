@@ -55,7 +55,7 @@ function InfiniteMarquee({
       <motion.div
         ref={containerRef}
         style={{ x }}
-        className="flex items-center gap-16 md:gap-24 w-max"
+        className="flex items-center gap-4 md:gap-6 w-max"
       >
         {items.map((partner, i) => (
           <a
